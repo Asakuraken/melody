@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOUNDFONT="FluidR3_GM.sf2"
+SOUNDFONT="/usr/share/sounds/sf2/FluidR3_GM.sf2"
 
 TARGET_DIR=${1:-"./generated2"}
 
