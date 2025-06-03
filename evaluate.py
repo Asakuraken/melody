@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import pretty_midi
+from tqdm import tqdm
 
 def compute_note_density(pm):
     total_notes = sum(len(inst.notes) for inst in pm.instruments)
@@ -35,7 +36,9 @@ def analyze_directory(directory):
     note_density_list = []
     IOI_average_list = []
     IOI_std_list = []
-    for filename in os.listdir(directory):
+    for i, filename in tqdm(enumerate(os.listdir(directory)), total=min(5000, len(os.listdir(directory)))):
+        if i >= 5000:
+            break
         if filename.endswith('.mid') or filename.endswith('.midi'):
             note_density, mean_ioi, std_ioi = analyze_midi_file(os.path.join(directory, filename))
             if note_density is not None:
